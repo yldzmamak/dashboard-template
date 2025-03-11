@@ -1,0 +1,14 @@
+html {
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    background: #fff;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    font-family: MuseoSans;
+  }
+}

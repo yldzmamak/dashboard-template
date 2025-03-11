@@ -1,0 +1,90 @@
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flexDirectionColumn($gap: number) {
+  gap: $gap;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexDirectionRow($gap: number) {
+  gap: $gap;
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin truncateText() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes shineAnimation {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    stroke-dashoffset: 200;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Animation for RTL */
+@keyframes slideInRTL {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRTL {
+  from {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+}

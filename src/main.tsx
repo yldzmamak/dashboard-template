@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+
+import store from "@/store/ConfigStore";
+
+import App from './App'
+
+import './index.scss'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <Router basename={`${process.env.VITE_BASE_PATH}`}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
 )

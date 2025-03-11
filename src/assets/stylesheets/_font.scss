@@ -1,0 +1,43 @@
+@use "sass:list";
+$fontName: "MuseoSans";
+$fontWeightsNum: 100, 300, 500, 700, 900;
+
+@function font-weight($indexPrefix) {
+ @return list.nth($fontWeightsNum, $indexPrefix);
+}
+
+@mixin fontFaceLoop {
+  @for $i from 1 through list.length($fontWeightsNum) {
+    $fontWeightNum: list.nth($fontWeightsNum, $i);
+    $fontFullName: "#{$fontName}-#{$fontWeightNum}";
+    $fileName: "/src/assets/fonts/MuseoSans/#{$fontFullName}";
+
+    @font-face {
+      font-family: $fontName;
+      font-style: normal;
+      font-weight: $fontWeightNum;
+      font-display: swap;
+      src: url("#{$fileName}.eot");
+      src: url("#{$fileName}.eot?#iefix") format("embedded-opentype"),
+           url("#{$fileName}.woff2") format("woff2"),
+           url("#{$fileName}.woff") format("woff"),
+           url("#{$fileName}.ttf") format("truetype"),
+           url("#{$fileName}.svg#{$fontFullName}") format("svg");
+    }
+  }
+}
+
+@include fontFaceLoop();
+
+/* currency font-family */
+@font-face {
+  font-family: "currency";
+  src: url("../fonts/MuseoSans/currency.eot?ll9vlg");
+  src:
+    url("../fonts/MuseoSans/currency.eot?ll9vlg#iefix") format("embedded-opentype"),
+    url("../fonts/MuseoSans/currency.ttf?ll9vlg") format("truetype"),
+    url("../fonts/MuseoSans/currency.woff?ll9vlg") format("woff"),
+    url("../fonts/MuseoSans/currency.svg?ll9vlg#currency") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
