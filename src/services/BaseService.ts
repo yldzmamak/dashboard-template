@@ -29,23 +29,15 @@ class Http {
   }
 
   private handleSuccess = (response: AxiosResponse) => {
-    if (response.status === 204) {
-      return null;
-    } else {
-      if (response.data.resultInfo.code !== CodeType.Success) {
-        notification.warning({
-          message: response.data.resultInfo.message,
-          duration: 3,
-          showProgress: true,
-        });
-      }
-
-      if ([105, 108].includes(response.data.responseHeader.message.code)) {
-        AuthService.logoutAuth();
-      }
-
-      return response?.data;
+    if (response.data.resultInfo.code !== CodeType.Success) {
+      notification.warning({
+        message: response.data.resultInfo.message,
+        duration: 3,
+        showProgress: true,
+      });
     }
+
+    return response?.data;
   };
 
   private handleError = (error: {
@@ -55,6 +47,16 @@ class Http {
     };
   }) => {
     console.error(error);
+
+    if (error.response && error.response.status === 401) {
+        notification.warning({
+        message: error.response.data.resultInfo.message,
+        duration: 3,
+        showProgress: true,
+      });
+      
+      AuthService.logoutAuth();
+    }
 
     return Promise.reject({
       ...error,

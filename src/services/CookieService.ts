@@ -31,7 +31,7 @@ class Cookie {
   };
 
   getToken = (): string | undefined => {
-    return CookieService.getCookie(StorageKeys.Token);
+    return CookieService.getCookie(StorageKeys.AccessToken);
   };
 }
 

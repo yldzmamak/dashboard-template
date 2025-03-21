@@ -1,21 +1,15 @@
+import { ConfigProvider } from 'antd';
 
-import { ConfigProvider } from 'antd'
+import AppRoutes from './routes/routes';
 
-import AppRoutes from './routes/routes'
-
-import './App.scss'
-
+import './App.scss';
 
 function App() {
   return (
     <ConfigProvider>
-      {/* <ApplicationLoader>
-        <AuthGuard> */}
-          <AppRoutes />
-        {/* </AuthGuard>
-      </ApplicationLoader> */}
+      <AppRoutes />
     </ConfigProvider>
-  )
+  );
 }
 
-export default App
+export default App;

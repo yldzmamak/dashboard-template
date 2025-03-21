@@ -1,9 +1,13 @@
-import { IStore } from "@/store/IStore";
 
-const getAuthState = (state: IStore) => state.auth;
-const getLogin = (state: IStore) => state.auth.login;
+import { createSelector } from '@reduxjs/toolkit';
 
-export {
-  getAuthState,
-  getLogin,
-};
+import { RootState } from '@/store/ConfigStore';
+
+const login = (state: RootState) => state.auth.login;
+
+export const authSelector = createSelector(
+  [login],
+  (login) => ({
+    login,
+  }),
+);

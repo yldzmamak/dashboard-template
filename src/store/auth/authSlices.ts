@@ -9,10 +9,10 @@ import { AuthState, ILoginDataState } from "@/types/interfaces/store/authenticat
 const initialState: AuthState = {
   login: {
     data: {
-      data: {
+      resultData: {
         id: '',
         accessToken: '',
-        accessTokenExpiresAt: '',
+        accessTokenExpiresAt: 0,
         userType: '',
       },
       resultInfo: {

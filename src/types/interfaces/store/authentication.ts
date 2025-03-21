@@ -11,6 +11,6 @@ export interface ILoginResponseState extends IStateMisc {
 export interface ILoginDataState {
   id: string;
   accessToken: string;
-  accessTokenExpiresAt: string;
+  accessTokenExpiresAt: number;
   userType: string;
 }

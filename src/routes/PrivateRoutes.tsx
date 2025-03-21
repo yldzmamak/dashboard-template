@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-import { StorageService } from "@/services/Storage.service";
+import { AuthService } from "@/services/AuthService";
 
-import { StorageKeys } from "@/types/enums/system";
+import { pathNames } from "@/types/constants";
 
 const PrivateRoute = () => {
-  const sessionToken = StorageService.getLocalStorageItem(StorageKeys.Token);
+  const auth = AuthService.isUserLoggedIn();
 
-  return sessionToken ? <Outlet /> : <Navigate to="/login" replace />;
+  return auth ? <Outlet /> : <Navigate to={pathNames.loginPage} replace />;
 };
 
 export default PrivateRoute;

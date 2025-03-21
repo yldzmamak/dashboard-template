@@ -17,7 +17,7 @@ class Auth {
   };
 
   logoutAuth = () => {
-    CookieService.deleteCookie(StorageKeys.Token);
+    CookieService.deleteCookie(StorageKeys.AccessToken);
   };
 }
 

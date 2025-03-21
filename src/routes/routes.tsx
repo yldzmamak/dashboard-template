@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import AuthLayout from "@/layout/AuthLayout/AuthLayout";
 import DashboardLayout from "@/layout/DashboardLayout/DashboardLayout";
@@ -7,23 +7,25 @@ import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
 import Profile from "@/pages/Profile/Profile";
 
+import { pathNames } from "@/types/constants";
+
 import PrivateRoute from "./PrivateRoutes";
 
-const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />} />
-      </Route>
+const AppRoutes = () => (
+  <Routes>
+    <Route element={<AuthLayout />}>
+      <Route path={pathNames.loginPage} element={<Login />} />
+      <Route path="/" element={<Navigate to={pathNames.loginPage} />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Route>
 
-      <Route element={<PrivateRoute />}>
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
+    <Route element={<PrivateRoute />}>
+      <Route element={<DashboardLayout />}>
+        <Route path={pathNames.dashboardPage} element={<Home />} />
+        <Route path={pathNames.profilePage} element={<Profile />} />
       </Route>
-    </Routes>
-  );
-};
+    </Route>
+  </Routes>
+);
 
 export default AppRoutes;

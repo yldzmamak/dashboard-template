@@ -6,7 +6,7 @@ export interface IStateMisc {
 }
 
 export interface IGlobalAPIResponse<T> {
-  data: T;
+  resultData: T;
   resultInfo: IResultInfoDetail;
 }
 

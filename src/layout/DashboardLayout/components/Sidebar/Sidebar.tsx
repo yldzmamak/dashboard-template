@@ -6,7 +6,7 @@ const Sidebar = () => {
       <h3>Sidebar</h3>
       <ul>
         <li><Link to="/dashboard">Home</Link></li>
-        <li><Link to="/dashboard/profile">Profile</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
       </ul>
     </aside>
   );

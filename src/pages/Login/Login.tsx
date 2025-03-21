@@ -1,40 +1,22 @@
-import { useNavigate } from "react-router-dom";
-
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input, message } from "antd";
+import { Button, Card, Form, Input } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 
-import { getLogin } from "@/store/auth/authSelectors";
+import { authSelector } from "@/store/auth/authSelectors";
 import { AuthActions } from "@/store/auth/authSlices";
-import { IStore } from "@/store/IStore";
 
 import { ILoginPayload } from "@/types/interfaces/login";
-
 
 import "./Login.scss";
 
 const Login = () => {
-  const {
-    login,
-  } = useAppSelector((state: IStore) => ({
-    login: getLogin(state),
-  }));
+  const { login } = useAppSelector(authSelector);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const onFinish = (values: ILoginPayload) => {
     dispatch(AuthActions.login(values));
-    
-    /* if (values.email === "admin@example.com" && values.password === "123456") {
-      //localStorage.setItem("sessionToken", "fake_token");
-      //message.success("Giriş başarılı! Dashboard'a yönlendiriliyorsunuz...");
-
-      //navigate("/dashboard");
-    } else {
-      message.error("E-posta veya şifre hatalı!");
-    } */
   };
 
   return (

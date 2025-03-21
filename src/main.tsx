@@ -1,18 +1,20 @@
-import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from 'react-redux';
 
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
 
-import store from "@/store/ConfigStore";
+import { history } from "@/components/History";
+import HistoryRouter from '@/components/History/HistoryRouter';
 
-import App from './App'
+import store from '@/store/ConfigStore';
 
-import './index.scss'
+import App from './App';
+
+import './index.scss';
 
 createRoot(document.getElementById('root')!).render(
-  <Router basename={`${process.env.VITE_BASE_PATH}`}>
+  <HistoryRouter history={history}>
     <Provider store={store}>
       <App />
     </Provider>
-  </Router>,
-)
+  </HistoryRouter>,
+);
