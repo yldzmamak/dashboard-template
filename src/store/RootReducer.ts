@@ -1,6 +1,6 @@
 import { Action, Reducer, combineReducers } from 'redux';
 
-import authSlices from "@/store/auth/authSlices";
+import authSlices from '@/store/auth/authSlices';
 
 import { IStore } from './IStore';
 

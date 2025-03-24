@@ -1,5 +1,7 @@
 import pluginJs from '@eslint/js';
-import importPlugin from 'eslint-plugin-import'; // 👈 Doğru şekilde içe aktarıyoruz
+import eslintImport from 'eslint-plugin-import';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -9,7 +11,9 @@ export default [
   { languageOptions: { globals: globals.browser } },
   {
     plugins: {
-      import: importPlugin,
+      react,
+      'react-hooks': reactHooks,
+      import: eslintImport,
     },
   },
   pluginJs.configs.recommended,
@@ -51,6 +55,9 @@ export default [
           argsIgnorePattern: '^_',
         },
       ],
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
+      'no-trailing-spaces': 'error',
+      'react/jsx-curly-spacing': ['error', 'never'],
       'react/jsx-filename-extension': 'off',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
@@ -66,6 +73,7 @@ export default [
           caseSensitive: false,
         },
       ],
+      quotes: ['error', 'single', { avoidEscape: true }],
       'no-case-declarations': 0,
       'react/no-children-prop': 0,
       'sort-imports': [
@@ -183,6 +191,15 @@ export default [
         { blankLine: 'always', prev: 'const', next: 'export' },
         { blankLine: 'always', prev: 'import', next: 'const' },
       ],
+      'react/jsx-tag-spacing': [
+        'error',
+        {
+          beforeSelfClosing: 'always',
+          afterOpening: 'never',
+          beforeClosing: 'never',
+        },
+      ],
+      'react/jsx-no-useless-fragment': 'error', // Gereksiz Fragment'leri engeller
     },
   },
 ];

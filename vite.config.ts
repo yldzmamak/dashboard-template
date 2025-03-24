@@ -67,7 +67,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           quietDeps: true,
-          additionalData: `@use "@/assets/stylesheets/main.scss" as *;`,
+          additionalData: '@use "@/assets/stylesheets/main.scss" as *;',
           api: 'modern-compiler',
         },
       },

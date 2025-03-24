@@ -1,13 +1,13 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from 'react-router-dom';
 
-import { AuthService } from "@/services/AuthService";
+import { AuthService } from '@/services/AuthService';
 
-import { pathNames } from "@/types/constants";
+import { pathNames } from '@/types/constants';
 
 const PrivateRoute = () => {
   const auth = AuthService.isUserLoggedIn();
 
-  return auth ? <Outlet /> : <Navigate to={pathNames.loginPage} replace />;
+  return auth ? <Outlet /> : <Navigate to={pathNames.authentication.loginPage} replace />;
 };
 
 export default PrivateRoute;

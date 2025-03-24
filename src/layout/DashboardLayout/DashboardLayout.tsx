@@ -1,71 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  HomeOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout } from 'antd';
 
-import type { MenuProps } from 'antd';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
-const { Header, Content, Footer, Sider } = Layout;
+import { authSelector } from '@/store/auth/authSelectors';
+import { AuthActions } from '@/store/auth/authSlices';
 
-const siderStyle: React.CSSProperties = {
-  overflow: 'auto',
-  height: '100vh',
-  position: 'sticky',
-  insetInlineStart: 0,
-  top: 0,
-  bottom: 0,
-  scrollbarWidth: 'thin',
-  scrollbarGutter: 'stable',
-};
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import Sider from './components/Sidebar/Sider';
 
-const items: MenuProps['items'] = [
-  HomeOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  AppstoreOutlined,
-  TeamOutlined,
-  ShopOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+import './DashboardLayout.scss';
+
+const { Content } = Layout;
 
 const DashboardLayout: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const { me } = useAppSelector(authSelector);
+  const dispatch = useAppDispatch();
 
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  useEffect(() => {
+    if (!me.loading && !me.error && me.data.resultData.firstName === '') {
+      dispatch(AuthActions.auth());
+    }
+  }, [])
 
   return (
-    <Layout hasSider>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={siderStyle}>
-        <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer, position: 'sticky', top: '0' }} />
-        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+    <Layout hasSider className='dashboardLayoutHolder'>
+      <Sider />
+      <Layout className='insideLayoutHolder'>
+        <Header />
+        <Content className='contentHolder'>
           <Outlet />
         </Content>
-        <Footer style={{ textAlign: 'center', position: 'sticky', bottom: '0' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <Footer />
       </Layout>
     </Layout>
   );

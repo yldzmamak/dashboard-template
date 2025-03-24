@@ -1,4 +1,4 @@
-import { CodeType } from "@/types/enums";
+import { CodeType } from '@/types/enums';
 
 export interface IStateMisc {
   loading: boolean;

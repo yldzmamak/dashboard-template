@@ -1,10 +1,10 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { stateMisc } from "@/types/constants";
-import { CodeType } from "@/types/enums";
-import { ILoginPayload } from "@/types/interfaces/login";
-import { IGlobalAPIResponse } from "@/types/interfaces/response";
-import { AuthState, ILoginDataState } from "@/types/interfaces/store/authentication";
+import { stateMisc } from '@/types/constants';
+import { CodeType } from '@/types/enums';
+import { ILoginPayload } from '@/types/interfaces/login';
+import { IGlobalAPIResponse } from '@/types/interfaces/response';
+import { AuthState, ILoginDataState, IMeDataState } from '@/types/interfaces/store/authentication';
 
 const initialState: AuthState = {
   login: {
@@ -14,6 +14,8 @@ const initialState: AuthState = {
         accessToken: '',
         accessTokenExpiresAt: 0,
         userType: '',
+        firstName: '',
+        lastName: ''
       },
       resultInfo: {
         code: CodeType.Success,
@@ -22,10 +24,25 @@ const initialState: AuthState = {
     },
     ...stateMisc,
   },
+  me: {
+    data: {
+      resultData: {
+        userType: '',
+        firstName: '',
+        lastName: ''
+      },
+      resultInfo: {
+        code: CodeType.Success,
+        message: ''
+      },
+    },
+    loading: false,
+    error: null
+  }
 };
 
 const authSlices = createSlice({
-  name: "Auth",
+  name: 'Auth',
   initialState,
   reducers: {
     login(state, _action: PayloadAction<ILoginPayload>) {
@@ -46,6 +63,26 @@ const authSlices = createSlice({
     loginError(state, action) {
       state.login.loading = false;
       state.login.error = action.payload;
+    },
+
+    auth(state) {
+      state.me.loading = true;
+      state.me.error = initialState.login.error;
+    },
+    authSuccess(
+      state,
+      action: PayloadAction<IGlobalAPIResponse<IMeDataState>>,
+    ) {
+      state.me.loading = false;
+      state.me.data = action.payload;
+
+      if (action.payload.resultInfo.code !== CodeType.Success) {
+        state.me.error = action?.payload?.resultInfo;
+      }
+    },
+    authError(state, action) {
+      state.me.loading = false;
+      state.me.error = action.payload;
     },
   }
 });

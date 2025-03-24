@@ -5,9 +5,12 @@ import { RootState } from '@/store/ConfigStore';
 
 const login = (state: RootState) => state.auth.login;
 
+const me = (state: RootState) => state.auth.me;
+
 export const authSelector = createSelector(
-  [login],
-  (login) => ({
+  [login, me],
+  (login, me) => ({
     login,
+    me,
   }),
 );

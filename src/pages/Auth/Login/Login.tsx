@@ -1,14 +1,14 @@
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input } from "antd";
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, Card, Form, Input } from 'antd';
 
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
-import { authSelector } from "@/store/auth/authSelectors";
-import { AuthActions } from "@/store/auth/authSlices";
+import { authSelector } from '@/store/auth/authSelectors';
+import { AuthActions } from '@/store/auth/authSlices';
 
-import { ILoginPayload } from "@/types/interfaces/login";
+import { ILoginPayload } from '@/types/interfaces/login';
 
-import "./Login.scss";
+import './Login.scss';
 
 const Login = () => {
   const { login } = useAppSelector(authSelector);
@@ -26,14 +26,14 @@ const Login = () => {
           name="loginForm"
           onFinish={onFinish}
           layout="vertical"
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: '', password: '' }}
         >
           <Form.Item
             label="E-Posta"
             name="email"
             rules={[
-              { required: true, message: "E-posta zorunludur!" },
-              { type: "email", message: "Geçerli bir e-posta giriniz!" },
+              { required: true, message: 'E-posta zorunludur!' },
+              { type: 'email', message: 'Geçerli bir e-posta giriniz!' },
             ]}
           >
             <Input prefix={<MailOutlined />} placeholder="E-posta adresinizi girin" />
@@ -42,7 +42,7 @@ const Login = () => {
           <Form.Item
             label="Şifre"
             name="password"
-            rules={[{ required: true, message: "Şifre zorunludur!" }]}
+            rules={[{ required: true, message: 'Şifre zorunludur!' }]}
           >
             <Input.Password prefix={<LockOutlined />} placeholder="Şifrenizi girin" />
           </Form.Item>

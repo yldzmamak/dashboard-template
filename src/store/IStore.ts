@@ -1,4 +1,4 @@
-import { AuthState } from "@/types/interfaces/store/authentication";
+import { AuthState } from '@/types/interfaces/store/authentication';
 
 export interface IStore {
   auth: AuthState;

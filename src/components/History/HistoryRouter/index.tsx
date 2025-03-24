@@ -1,8 +1,7 @@
-import React from "react";
-import { Router } from "react-router-dom";
+import React from 'react';
+import { Router } from 'react-router-dom';
 
-import type { BrowserHistory } from "history";
-
+import type { BrowserHistory } from 'history';
 
 type HistoryRouterProps = {
   history: BrowserHistory

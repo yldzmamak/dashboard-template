@@ -1,28 +1,43 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import AuthLayout from "@/layout/AuthLayout/AuthLayout";
-import DashboardLayout from "@/layout/DashboardLayout/DashboardLayout";
+import { pathNames } from '@/types/constants';
 
-import Home from "@/pages/Home/Home";
-import Login from "@/pages/Login/Login";
-import Profile from "@/pages/Profile/Profile";
+const PrivateRoute = lazy(() => import('./PrivateRoutes'));
 
-import { pathNames } from "@/types/constants";
+const AuthLayout = lazy(() => import('@/layout/AuthLayout/AuthLayout'));
+const DashboardLayout = lazy(() => import('@/layout/DashboardLayout/DashboardLayout'));
 
-import PrivateRoute from "./PrivateRoutes";
+const Home = lazy(() => import('@/pages/Dashboard/Home/Home'));
+const Login = lazy(() => import('@/pages/Auth/Login/Login'));
+const Profile = lazy(() => import('@/pages/Dashboard/Profile/Profile'));
+const UserList = lazy(() => import('@/pages/Dashboard/UserList/UserList'));
 
 const AppRoutes = () => (
   <Routes>
-    <Route element={<AuthLayout />}>
-      <Route path={pathNames.loginPage} element={<Login />} />
-      <Route path="/" element={<Navigate to={pathNames.loginPage} />} />
+    <Route
+      element={
+        <Suspense>
+          <AuthLayout />
+        </Suspense>
+      }
+    >
+      <Route path={pathNames.authentication.loginPage} element={<Login />} />
+      <Route path="/" element={<Navigate to={pathNames.authentication.loginPage} />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Route>
 
-    <Route element={<PrivateRoute />}>
+    <Route
+      element={
+        <Suspense>
+          <PrivateRoute />
+        </Suspense>
+      }
+    >
       <Route element={<DashboardLayout />}>
         <Route path={pathNames.dashboardPage} element={<Home />} />
         <Route path={pathNames.profilePage} element={<Profile />} />
+        <Route path={pathNames.userListPage} element={<UserList />} />
       </Route>
     </Route>
   </Routes>
