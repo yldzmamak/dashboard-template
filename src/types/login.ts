@@ -1,4 +1,4 @@
-export interface ILoginPayload {
+export type LoginPayload = {
   email: string;
   password: string;
 }

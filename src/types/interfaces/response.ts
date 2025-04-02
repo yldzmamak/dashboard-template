@@ -11,6 +11,16 @@ export interface IGlobalAPIResponse<T> {
 }
 
 export interface IResultInfoDetail {
-  code: CodeType;
-  message: string;
+  code: CodeType | null;
+  message: string | null;
+}
+
+export interface IResultDataContent<T> extends IResultDataPageInfo {
+  content: T;
+}
+
+export interface IResultDataPageInfo {
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
 }

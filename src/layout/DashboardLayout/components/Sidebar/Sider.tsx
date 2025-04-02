@@ -31,8 +31,19 @@ const Sider = () => {
   }, [location.pathname]);
 
   return (
-    <AntSider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="siderHolder">
-      <div className="demo-logo-vertical" />
+    <AntSider theme='dark' collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="siderHolder">
+      <div style={{
+        height: 64,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#001529',
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold'
+      }}>
+        CKR Panel
+      </div>
       <Menu
         theme="dark"
         mode="inline"

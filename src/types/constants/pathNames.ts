@@ -5,4 +5,5 @@ export const pathNames = {
   dashboardPage: '/dashboard',
   profilePage: '/profile',
   userListPage: '/users',
+  userPage: '/user',
 } as const;

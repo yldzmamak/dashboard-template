@@ -2,9 +2,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { stateMisc } from '@/types/constants';
 import { CodeType } from '@/types/enums';
-import { ILoginPayload } from '@/types/interfaces/login';
 import { IGlobalAPIResponse } from '@/types/interfaces/response';
-import { AuthState, ILoginDataState, IMeDataState } from '@/types/interfaces/store/authentication';
+import { AuthState, ILoginDataState, IMeDataState } from '@/types/interfaces/store/authState';
+import { LoginPayload } from '@/types/login';
 
 const initialState: AuthState = {
   login: {
@@ -18,8 +18,8 @@ const initialState: AuthState = {
         lastName: ''
       },
       resultInfo: {
-        code: CodeType.Success,
-        message: ''
+        code: null,
+        message: null
       },
     },
     ...stateMisc,
@@ -32,8 +32,8 @@ const initialState: AuthState = {
         lastName: ''
       },
       resultInfo: {
-        code: CodeType.Success,
-        message: ''
+        code: null,
+        message: null
       },
     },
     loading: false,
@@ -45,7 +45,7 @@ const authSlices = createSlice({
   name: 'Auth',
   initialState,
   reducers: {
-    login(state, _action: PayloadAction<ILoginPayload>) {
+    login(state, _action: PayloadAction<LoginPayload>) {
       state.login.loading = true;
       state.login.error = initialState.login.error;
     },

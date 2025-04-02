@@ -1,15 +1,15 @@
 
 import { StorageKeys } from '@/types/enums';
-import { ILoginPayload } from '@/types/interfaces/login';
 import { IGlobalAPIResponse } from '@/types/interfaces/response';
-import { ILoginDataState, IMeDataState } from '@/types/interfaces/store/authentication';
+import { ILoginDataState, IMeDataState } from '@/types/interfaces/store/authState';
+import { LoginPayload } from '@/types/login';
 
 import { HttpService } from './BaseService';
 import { CookieService } from './CookieService';
 
 class Auth {
-  login = (payload: ILoginPayload) => {
-    return HttpService.post<ILoginPayload, IGlobalAPIResponse<ILoginDataState>>('/api/v0/auth/login', payload);
+  login = (payload: LoginPayload) => {
+    return HttpService.post<LoginPayload, IGlobalAPIResponse<ILoginDataState>>('/api/v0/auth/login', payload);
   };
 
   auth = () => {

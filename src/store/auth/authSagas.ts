@@ -9,13 +9,13 @@ import { CookieService } from '@/services/CookieService';
 
 import { pathNames } from '@/types/constants';
 import { CodeType, StorageKeys } from '@/types/enums';
-import { ILoginPayload } from '@/types/interfaces/login';
 import { IGlobalAPIResponse } from '@/types/interfaces/response';
-import { ILoginDataState, IMeDataState } from '@/types/interfaces/store/authentication';
+import { ILoginDataState, IMeDataState } from '@/types/interfaces/store/authState';
+import { LoginPayload } from '@/types/login';
 
 import { AuthActions } from './authSlices';
 
-function* getLogin(action: PayloadAction<ILoginPayload>) {
+function* getLogin(action: PayloadAction<LoginPayload>) {
   try {
     const response: IGlobalAPIResponse<ILoginDataState> = yield call(AuthService.login, action.payload);
 

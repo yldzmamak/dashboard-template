@@ -1,3 +1,4 @@
+import LogoutOutlined from '@ant-design/icons/lib/icons/LogoutOutlined';
 import { Button, Layout, Row, Space } from 'antd';
 
 import { browserHistory } from '@/components/History';
@@ -28,7 +29,7 @@ const Header = () => {
       <Row justify="end" align="middle">
         <Space size="middle">
           <Text strong>{`${me.data.resultData.firstName} ${me.data.resultData.lastName}`}</Text>
-          <Button type="primary" onClick={handleLogout}>Çıkış Yap</Button>
+          <Button type="primary" danger onClick={handleLogout}><LogoutOutlined /></Button>
         </Space>
       </Row>
     </AntHeader>

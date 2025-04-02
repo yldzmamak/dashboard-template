@@ -12,6 +12,7 @@ const Home = lazy(() => import('@/pages/Dashboard/Home/Home'));
 const Login = lazy(() => import('@/pages/Auth/Login/Login'));
 const Profile = lazy(() => import('@/pages/Dashboard/Profile/Profile'));
 const UserList = lazy(() => import('@/pages/Dashboard/UserList/UserList'));
+const User = lazy(() => import('@/pages/Dashboard/User/User'));
 
 const AppRoutes = () => (
   <Routes>
@@ -38,6 +39,8 @@ const AppRoutes = () => (
         <Route path={pathNames.dashboardPage} element={<Home />} />
         <Route path={pathNames.profilePage} element={<Profile />} />
         <Route path={pathNames.userListPage} element={<UserList />} />
+        <Route path={pathNames.userPage} element={<User />} />
+        <Route path={`${pathNames.userPage}/:id`} element={<User />} />
       </Route>
     </Route>
   </Routes>

@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { authSelector } from '@/store/auth/authSelectors';
 import { AuthActions } from '@/store/auth/authSlices';
 
-import { ILoginPayload } from '@/types/interfaces/login';
+import { LoginPayload } from '@/types/login';
 
 import './Login.scss';
 
@@ -15,7 +15,7 @@ const Login = () => {
 
   const dispatch = useAppDispatch();
 
-  const onFinish = (values: ILoginPayload) => {
+  const onFinish = (values: LoginPayload) => {
     dispatch(AuthActions.login(values));
   };
 
